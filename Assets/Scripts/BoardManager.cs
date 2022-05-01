@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class BoardManager : MonoBehaviour
     private Player player;
     [SerializeField]
     private float moveSpeed = 2f;
+
+    public Dropdown dropdown;
+    public Button button;
+
     //funcion update
 
     void Update()
@@ -27,9 +32,24 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        grid = new Grid(10, 10, 1, CellPrefab, mascara);
+        //pasar el valor de dropdown a entero
 
-        player = Instantiate(PlayerPrefab, new Vector2(0, 0), Quaternion.identity);  
+        var valor =dropdown.value;
+        int Tam= int.Parse(dropdown.options[valor].text);
+        //cuando de click en el boton
+        button.onClick.AddListener(() =>
+        {
+            //Elimina dropdown
+            Destroy(dropdown.gameObject);
+            //Elimina boton
+            Destroy(button.gameObject);
+            Debug.Log("Tam: " + Tam);
+            grid = new Grid(Tam, Tam, 1, CellPrefab, mascara);
+
+            player = Instantiate(PlayerPrefab, new Vector2(0, 0), Quaternion.identity);  
+        });
+
+        
     }
 
     public void CellMouseClick(int x, int y)

@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     {
         //ResetPosition();
         waypointIndex = 0;
+        path.RemoveAt(0);
         this.path = path;
     }
 
