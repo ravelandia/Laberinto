@@ -29,7 +29,8 @@ public class Grid : ScriptableObject
 
     private void generateBoard()
     {
-        var cont=5;
+        
+        var cont=30;
         Cell cell;
         gridArray = new Cell[width, height];
 
@@ -37,11 +38,11 @@ public class Grid : ScriptableObject
         {
             for (int j = 0; j < height; j++)
             {
-                var p = new Vector2(i, j) * cellSize;
+                var p = new Vector3(i, j,1) * cellSize;
                 cell = Instantiate(cellPrefab, p, Quaternion.identity);
                 cell.Init(this, (int)p.x, (int)p.y, true);
 
-                if (Random.Range(0, 10) == 2 && cont>=1){
+                if (Random.Range(0, 10) <= 2 && cont>=1){
                     //cambiar el LayerMask de la clase Cell a mascara
                     int v=cell.GetLayerMask();
                     cell.SetLayerMask(v+3);

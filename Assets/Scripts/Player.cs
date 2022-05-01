@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 2f;
 
-    public Vector2 GetPosition => transform.position;
+    public Vector3 GetPosition => transform.position;
 
     // Index of current waypoint from which Enemy walks
     // to the next one
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
 
     public void ResetPosition()
     {
-        transform.position = new Vector2(0, 0);
+        transform.position = new Vector3(0, 0,0);
     }
 
     private void Move()
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
             // Move player from current waypoint to the next one
             // using MoveTowards method
-            transform.position = Vector2.MoveTowards(transform.position,
+            transform.position = Vector3.MoveTowards(transform.position,
                path[waypointIndex].transform.position,
                moveSpeed * Time.deltaTime);
 

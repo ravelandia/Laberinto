@@ -9,6 +9,10 @@ public class BoardManager : MonoBehaviour
     public static BoardManager Instance;
     [SerializeField] private Cell CellPrefab;
     [SerializeField] private Player PlayerPrefab;
+
+
+
+    public HeroMovement HeroMovement;
     public LayerMask mascara;
     private Grid grid;
     private Player player;
@@ -46,7 +50,8 @@ public class BoardManager : MonoBehaviour
             Debug.Log("Tam: " + Tam);
             grid = new Grid(Tam, Tam, 1, CellPrefab, mascara);
 
-            player = Instantiate(PlayerPrefab, new Vector2(0, 0), Quaternion.identity);  
+            player = Instantiate(PlayerPrefab, new Vector3(0, 0,1), Quaternion.identity); 
+            HeroMovement=Instantiate(HeroMovement, new Vector3(0, 1,1), Quaternion.identity); 
         });
 
         
